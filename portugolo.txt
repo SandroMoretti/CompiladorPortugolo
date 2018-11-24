@@ -1,5 +1,5 @@
 Algoritmo Portugolo
-Declare N1, /*testes testes*/ N2
+Declare numerico N1, N2; literal/*testes testes*/ N3; logico N4;
 N1<--50;
 // Inicio falso
 se(N1<-5)

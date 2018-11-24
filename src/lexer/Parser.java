@@ -44,7 +44,7 @@ public class Parser {
 
     public void advance() {
         token = lexer.getToken();
-        //System.out.println("[DEBUG]" + token.toString());
+        System.out.println("[DEBUG]" + token.toString());
     }
 
     public void skip(String mensagem) {
@@ -63,7 +63,6 @@ public class Parser {
     }
 
     public void Programa() {
-        System.out.println(token.getLexema() + ": " + token.getClasse());
         if (token.getClasse() != Tag.KW) {
             //skip("Esperado \"Algoritmo\", encontrado " + "\"" + token.getLexema() + "\"");
         }
@@ -72,8 +71,89 @@ public class Parser {
             erroSintatico("Esperado \"Algoritmo\", encontrado " + "\"" + token.getLexema() + "\"");
         }
 
-        if (!eat(Tag.ID)) {
+        if (!eat(Tag.ID)) { // espera "ID"
             erroSintatico("Esperado um \"ID\", encontrado " + "\"" + token.getLexema() + "\"");
+        }
+
+        if (token.getClasse() == Tag.KW_declare) {  // verifica se está declarando as variáveis.
+            RegexDeclVar(); // declare
+        }   // sem else, sem erros = ou vazio
+    }
+
+    public void RegexDeclVar() {
+        if (!eat(Tag.KW_declare)) {
+            erroSintatico("Esperado um \"declare\" encontrado \"" + token.getLexema() + "\"");
+        }
+
+        Tipo();
+        ListaID();
+
+        if (!eat(Tag.SMB_SEMICOLON)) {
+            erroSintatico("Esperado \";\", encontrado " + "\"" + token.getLexema() + "\"");
+        }
+
+        DeclaraVar();
+
+    }
+
+    public void DeclaraVar() {
+        if (token.getClasse() == Tag.KW_numerico || token.getClasse() == Tag.KW_literal || token.getClasse() == Tag.KW_logico) {
+            Tipo();
+            ListaID();
+
+            if (!eat(Tag.SMB_SEMICOLON)) {
+                erroSintatico("Esperado \";\", encontrado " + "\"" + token.getLexema() + "\"");
+            }
+            DeclaraVar();
+        }   // se estiver chamando outro token else vazio
+
+    }
+
+    public void ListaRotina() {
+    }
+
+    public void ListaRotinaLinha() {
+    }
+
+    public void Rotina() {
+    }
+
+    public void ListaParam() {
+    }
+
+    public void ListaParamLinha() {
+    }
+
+    public void Param() {
+    }
+
+    public void ListaID() {
+        if (!eat(Tag.ID)) { // espera "ID"
+            erroSintatico("Esperado um \"ID\", encontrado " + "\"" + token.getLexema() + "\"");
+        }
+        ListaIDLinha();
+    }
+
+    public void ListaIDLinha() {
+        if (token.getClasse() == Tag.SMB_VIRGULA) {
+            if (!eat(Tag.SMB_VIRGULA)) { // espera ";"
+                erroSintatico("Esperado um \";\", encontrado " + "\"" + token.getLexema() + "\"");
+            }
+            if (!eat(Tag.ID)) { // espera "ID"
+                erroSintatico("Esperado um \"ID\", encontrado" + "\"" + token.getLexema() + "\"");
+            }
+        }
+    }
+
+    public void Retorno() {
+    }
+
+    public void Tipo() {
+        if (token.getClasse() == Tag.KW_numerico || token.getClasse() == Tag.KW_literal || token.getClasse() == Tag.KW_logico) {
+            // verifica os possiveis tipos de variaveis
+            advance();
+        } else {
+            erroSintatico("Esperado um tipo (numerico, verdadeiro, lógico) encontrado \"" + token.getClasse() + "\"");
         }
     }
 }

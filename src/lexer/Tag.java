@@ -40,6 +40,7 @@ public enum Tag {
     //DOUBLE,
     //strings
     LITERAL,
+    LOGICO,
     // palavras reservada
     KW,
     KW_algoritmo,
@@ -63,5 +64,7 @@ public enum Tag {
     KW_ou,
     KW_e,
     KW_nao,
-    KW_senao;
+    KW_senao,
+    KW_verdadeiro,
+    KW_falso;
 }

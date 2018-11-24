@@ -86,6 +86,12 @@ public class TSS {
 
         word = new Token(Tag.KW_nao, "Nao", 0, 0);
         this.tabelaSimbolos.put("Nao", word);
+
+        word = new Token(Tag.KW_verdadeiro, "Verdadeiro", 0, 0);
+        this.tabelaSimbolos.put("verdadeiro", word);
+
+        word = new Token(Tag.KW_falso, "Falso", 0, 0);
+        this.tabelaSimbolos.put("falso", word);
     }
 
     public void put(String s, Token w) {
