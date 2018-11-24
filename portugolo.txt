@@ -1,0 +1,15 @@
+Algoritmo Portugolo
+Declare N1, /*testes testes*/ N2
+N1<--50;
+// Inicio falso
+se(N1<-5)
+	Escreva "Nice test :-)";
+Inicio
+Leia N1, N2;
+Se N1 >= N2
+	Escreva "Aprovado";
+Senao
+	Escreva "Reprovado";
+se(N1 <> 3) inicio
+Escreva "oi cara d boi";
+Fim
