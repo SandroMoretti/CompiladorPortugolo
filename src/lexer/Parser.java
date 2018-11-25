@@ -562,8 +562,9 @@ public class Parser {
             case KW_ou:
                 // first exp1linha
                 advance();
-                Exp2();
-                Exp1Linha();
+                Expressao();
+                //Exp2();
+                //Exp1Linha();
                 break;
             case RELOP_LT:
             case RELOP_LE:

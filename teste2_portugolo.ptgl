@@ -1,4 +1,4 @@
-algoritmo 
+algoritmo teste2portugolo
    declare numerico
    x, y;
    logico z;
@@ -17,7 +17,7 @@ algoritmo
    escreva(z);
 
    // terceira atribuicao
-   se(x - y <= x E x - y >= y) inicio
+   se(y > 1 e y >= 5 ou z) inicio
       escreva("Eh isso ai.");
    fim
 fim algoritmo 
