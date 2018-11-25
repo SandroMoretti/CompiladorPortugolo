@@ -1,7 +1,7 @@
 algoritmo 
-   declare
-   x, y numerico;
-   z logico;
+   declare numerico
+   x, y;
+   logico z;
    
    escreva("informe um numero: ");
    leia(x);
@@ -13,7 +13,7 @@ algoritmo
    z <-- (x + y) <> (x * y / 2.11);
    escreva(z);
 
-   z <-- (verdadeiro Ou falso) = (falso E Nao falso); // segunda atribuicao
+   z <-- (verdadeiro Ou falso) = (falso E falso); // segunda atribuicao
    escreva(z);
 
    // terceira atribuicao

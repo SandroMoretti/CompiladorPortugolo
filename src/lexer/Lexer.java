@@ -252,7 +252,7 @@ public class Lexer {
                     } else {
                         //estado = 14;
                         retornaPonteiro();
-                        return new Token(Tag.RELOP_ASSIGN, "=", n_line, n_column);
+                        return new Token(Tag.RELOP_EQ, "=", n_line, n_column);
                     }
                 case 5:
                     if (Character.isLetterOrDigit(c)) {
