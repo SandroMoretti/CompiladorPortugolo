@@ -42,9 +42,16 @@ public class Parser {
         System.out.println(mensagem + "\n");
     }
 
+    public void erroSemantico(String mensagem, Token token) {
+
+        System.out.print("[Erro Semantico] na linha " + token.getLinha() + " e coluna " + token.getColuna() + ": ");
+        System.out.println(mensagem + "\n");
+    }
+
     public void advance() {
         token = lexer.getToken();
-        System.out.println("[DEBUG]" + token.toString());
+        // Lexer.tabelaSimbolos.put(token.getLexema(), token);
+        // System.out.println("[DEBUG]" + token.toString() + " <" + token.getLinha() + ", " + token.getColuna() + ">");
     }
 
     public void skip(String mensagem) {
@@ -63,16 +70,15 @@ public class Parser {
     }
 
     public void Programa() {
-        if (token.getClasse() != Tag.KW) {
-            //skip("Esperado \"Algoritmo\", encontrado " + "\"" + token.getLexema() + "\"");
-        }
-
         if (!eat(Tag.KW_algoritmo)) {
             erroSintatico("Esperado \"Algoritmo\", encontrado " + "\"" + token.getLexema() + "\"");
         }
 
+        Token tTS = token;
         if (!eat(Tag.ID)) { // espera "ID"
             erroSintatico("Esperado um \"ID\", encontrado " + "\"" + token.getLexema() + "\"");
+        } else {
+            Lexer.tabelaSimbolos.put(tTS.getLexema(), tTS);
         }
 
         RegexDeclVar(); // declare
@@ -180,7 +186,7 @@ public class Parser {
         if (eat(Tag.SMB_VIRGULA)) {
             ListaParam();
         } else {
-            if (!eat(Tag.SMB_CP)) { // follow ListaParamLinha = )
+            if (token.getClasse() != (Tag.SMB_CP)) { // follow ListaParamLinha = )
                 erroSintatico("Esperado \")\", encontrado " + "\"" + token.getLexema() + "\"");
             }
         }
@@ -192,8 +198,15 @@ public class Parser {
     }
 
     public void ListaID() {
+        Token tTS = token;
         if (!eat(Tag.ID)) { // espera "ID"
             erroSintatico("Esperado um \"ID\", encontrado " + "\"" + token.getLexema() + "\"");
+        } else {
+            if (Lexer.tabelaSimbolos.retornaToken(tTS.getLexema()) != null) {
+                erroSemantico("A variável " + tTS.getLexema() + " já foi declarada antes.", tTS);
+            } else {
+                lexer.tabelaSimbolos.put(tTS.getLexema(), tTS);
+            }
         }
         ListaIDLinha();
     }
@@ -203,9 +216,17 @@ public class Parser {
             if (!eat(Tag.SMB_VIRGULA)) { // espera ";"
                 erroSintatico("Esperado um \";\", encontrado " + "\"" + token.getLexema() + "\"");
             }
+            Token tTS = token;
             if (!eat(Tag.ID)) { // espera "ID"
-                erroSintatico("Esperado um \"ID\", encontrado" + "\"" + token.getLexema() + "\"");
+                skip("Esperado um \"ID\", encontrado" + "\"" + token.getLexema() + "\"");
+            } else {
+                if (Lexer.tabelaSimbolos.retornaToken(tTS.getLexema()) != null) {
+                    erroSemantico("A variável " + tTS.getLexema() + " já foi declarada antes.", tTS);
+                } else {
+                    lexer.tabelaSimbolos.put(tTS.getLexema(), tTS);
+                }
             }
+            ListaIDLinha();
         }
     }
 

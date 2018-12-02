@@ -18,7 +18,7 @@ public class TSS {
     private Map<String, Token> tabelaSimbolos; // Tabela de símbolos do ambiente
 
     public TSS() {
-        tabelaSimbolos = new TreeMap<String, Token>(String.CASE_INSENSITIVE_ORDER);
+        tabelaSimbolos = new HashMap(); //new CaseInsensitiveMap();//TreeMap<String, Token>(String.CASE_INSENSITIVE_ORDER);
 
         // Inserindo as palavras reservadas
         Token word;
@@ -78,19 +78,19 @@ public class TSS {
         word = new Token(Tag.KW_leia, "leia", 0, 0);
         this.tabelaSimbolos.put("leia", word);
 
-        word = new Token(Tag.KW_ou, "Ou", 0, 0);
-        this.tabelaSimbolos.put("Ou", word);
+        word = new Token(Tag.KW_ou, "ou", 0, 0);
+        this.tabelaSimbolos.put("ou", word);
 
-        word = new Token(Tag.KW_e, "E", 0, 0);
-        this.tabelaSimbolos.put("E", word);
+        word = new Token(Tag.KW_e, "e", 0, 0);
+        this.tabelaSimbolos.put("e", word);
 
-        word = new Token(Tag.KW_nao, "Nao", 0, 0);
-        this.tabelaSimbolos.put("Nao", word);
+        word = new Token(Tag.KW_nao, "nao", 0, 0);
+        this.tabelaSimbolos.put("nao", word);
 
-        word = new Token(Tag.KW_verdadeiro, "Verdadeiro", 0, 0);
+        word = new Token(Tag.KW_verdadeiro, "verdadeiro", 0, 0);
         this.tabelaSimbolos.put("verdadeiro", word);
 
-        word = new Token(Tag.KW_falso, "Falso", 0, 0);
+        word = new Token(Tag.KW_falso, "falso", 0, 0);
         this.tabelaSimbolos.put("falso", word);
     }
 
@@ -101,7 +101,7 @@ public class TSS {
     // Pesquisa na tabela de símbolos se há algum token com determinado lexema
     // vamos usar esse metodo somente para diferenciar ID e KW
     public Token retornaToken(String lexema) {
-        Token token = tabelaSimbolos.get(lexema);
+        Token token = tabelaSimbolos.get(lexema.toLowerCase());
         return token;
     }
 

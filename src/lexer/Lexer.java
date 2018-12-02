@@ -14,7 +14,7 @@ public class Lexer {
     public static int n_line = 1; // contador de linhas
     public static int n_column = 0; // contador de linhas
     private RandomAccessFile instance_file; // referencia para o arquivo
-    private static TSS tabelaSimbolos; // tabela de simbolos
+    static TSS tabelaSimbolos; // tabela de simbolos
     private static boolean first = false;
     private static boolean retornou = false;
     private static String lastError = null;

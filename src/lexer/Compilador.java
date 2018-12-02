@@ -17,7 +17,7 @@ public class Compilador {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Lexer lexer = new Lexer("C:\\projetos\\tp_lexer\\Lexer\\teste2_portugolo.ptgl");
+        Lexer lexer = new Lexer("C:\\projetos\\tp_lexer\\Lexer\\portugolo.txt");
         Parser parser = new Parser(lexer);
 
         // primeiro procedimento do Javinha: Programa()
