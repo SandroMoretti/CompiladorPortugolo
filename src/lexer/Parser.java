@@ -147,8 +147,11 @@ public class Parser {
             erroSintatico("Esperado \"subrotina\", encontrado " + "\"" + token.getLexema() + "\"");
         }
 
+        Token tTS = token;
         if (!eat(Tag.ID)) {
             erroSintatico("Esperado \"ID\", encontrado " + "\"" + token.getLexema() + "\"");
+        } else {
+            Lexer.tabelaSimbolos.put(tTS.getLexema(), tTS);
         }
 
         if (!eat(Tag.SMB_OP)) {
@@ -243,7 +246,7 @@ public class Parser {
             // verifica os possiveis tipos de variaveis
             advance();
         } else {
-            erroSintatico("Esperado um tipo (numerico, verdadeiro, lógico) encontrado \"" + token.getLexema() + "\"");
+            erroSintatico("Esperado um tipo (numerico, literal, lógico) encontrado \"" + token.getLexema() + "\"");
         }
     }
 

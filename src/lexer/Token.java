@@ -10,58 +10,73 @@ package lexer;
  * @author gustavo
  */
 public class Token {
-    
-   private Tag nome;
-   private String lexema;
-   private int linha;
-   private int coluna;
-	
-   public Token(Tag nome, String lexema, int linha, int coluna) {
 
-      this.nome = nome;
-      this.lexema = lexema;
-      this.linha = linha;
-      this.coluna = coluna;
-   }
-	
-   public Tag getClasse() {
-		
-      return nome;
-   }
-	
-   public void setClasse(Tag nome) {
-		
-      this.nome = nome;
-   }
-	
-   public String getLexema() {
-	
-      return lexema;
-   }
-	
-   public void setLexema(String lexema) {
-		
-      this.lexema = lexema;
-   }
-    
-   public int getLinha() {
-      return linha;
-   }
+    private Tag nome;
+    private String lexema;
+    private int linha;
+    private int coluna;
+    private int tipo;
 
-   public void setLinha(int linha) {
-      this.linha = linha;
-   }
+    public Token(Tag nome, String lexema, int linha, int coluna) {
 
-   public int getColuna() {
-      return coluna;
-   }
+        this.nome = nome;
+        this.lexema = lexema;
+        this.linha = linha;
+        this.coluna = coluna;
+    }
 
-   public void setColuna(int coluna) {
-      this.coluna = coluna;
-   }
-    
-   @Override
-   public String toString() {
-      return "<" + nome + ", \"" + lexema + "\">";
-   }
+    public Tag getClasse() {
+
+        return nome;
+    }
+
+    public void setClasse(Tag nome) {
+
+        this.nome = nome;
+    }
+
+    public String getLexema() {
+
+        return lexema;
+    }
+
+    public void setLexema(String lexema) {
+
+        this.lexema = lexema;
+    }
+
+    public int getLinha() {
+        return linha;
+    }
+
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+
+    public int getColuna() {
+        return coluna;
+    }
+
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
+    }
+
+    @Override
+    public String toString() {
+        return "<" + nome + ", \"" + lexema + "\">";
+    }
+
+    /**
+     * @return the tipo
+     */
+    public int getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
 }
